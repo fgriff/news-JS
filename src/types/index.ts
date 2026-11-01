@@ -48,3 +48,40 @@ export interface SourcesResponse {
     status: string;
     sources: Source[];
 }
+
+export interface ILoader {
+    readonly baseLink: string;
+    readonly options: RequestParams;
+    getResp: ({ endpoint, options }: IResponse, callback?: Callback) => void;
+    errorHandler: (res: Response) => Response | never;
+    makeUrl: (options: IOptions, endpoint: Endpoints) => string;
+    load: (method: string, endpoint: Endpoints, callback: Callback, options: IOptions) => void;
+}
+
+export type RequestParams = {
+    apiKey: string;
+    q?: string;
+    searchIn?: 'title' | 'description' | 'content';
+    sources?: string;
+    domains?: string;
+    excludeDomains?: string;
+    from?: string;
+    to?: string;
+    language?: string;
+    sortBy?: 'relevancy' | 'popularity' | 'publishedAt';
+    pageSize?: number;
+    page?: number;
+};
+
+export interface IResponse {
+    endpoint: Endpoints;
+    options: IOptions;
+}
+
+export type Callback = (data: SourcesResponse | NewsResponse) => void;
+
+export type Endpoints = 'sources' | 'everything' | 'top-headlines' | 'top-headlines/sources';
+
+export interface IOptions {
+    sources?: string;
+}
