@@ -1,27 +1,27 @@
 import type News from '../components/view/news/news';
 import type Sources from '../components/view/sources/sources';
 
-export interface ViewDrawData<T> {
+export interface IViewDrawData<T> {
     draw: (data: T) => void;
 }
 
-interface ArticleSource {
+interface IArticleSource {
     readonly id: string;
     readonly name: string;
 }
 
-export interface Article {
+export interface IArticle {
     readonly author: string;
     readonly content: string;
     readonly description: string;
     readonly publishedAt: string;
-    readonly source: ArticleSource;
+    readonly source: IArticleSource;
     readonly title: string;
     readonly url: string;
     readonly urlToImage: string;
 }
 
-export interface Source {
+export interface ISource {
     readonly category: string;
     readonly country: string;
     readonly description: string;
@@ -31,22 +31,22 @@ export interface Source {
     readonly url: string;
 }
 
-export interface AppViewClass {
+export interface IAppView {
     readonly news: News;
     readonly sources: Sources;
-    drawNews: (data: NewsResponse) => void;
-    drawSources: (data: SourcesResponse) => void;
+    drawNews: (data: INewsResponse) => void;
+    drawSources: (data: ISourcesResponse) => void;
 }
 
-export interface NewsResponse {
+export interface INewsResponse {
     status: string;
-    articles?: Article[];
+    articles?: IArticle[];
     totalResults?: number;
 }
 
-export interface SourcesResponse {
+export interface ISourcesResponse {
     status: string;
-    sources: Source[];
+    sources: ISource[];
 }
 
 export interface ILoader {
@@ -78,7 +78,7 @@ export interface IResponse {
     options: IOptions;
 }
 
-export type Callback = (data: SourcesResponse | NewsResponse) => void;
+export type Callback = (data: ISourcesResponse | INewsResponse) => void;
 
 export type Endpoints = 'sources' | 'everything' | 'top-headlines' | 'top-headlines/sources';
 

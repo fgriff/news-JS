@@ -4,9 +4,9 @@ import {
     ILoader,
     IOptions,
     IResponse,
-    NewsResponse,
+    INewsResponse,
     RequestParams,
-    SourcesResponse,
+    ISourcesResponse,
 } from '../../types/index';
 
 class Loader implements ILoader {
@@ -52,7 +52,7 @@ class Loader implements ILoader {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
-            .then((data: SourcesResponse | NewsResponse) => callback(data))
+            .then((data: ISourcesResponse | INewsResponse) => callback(data))
             .catch((err: Error) => console.error(err));
     }
 }

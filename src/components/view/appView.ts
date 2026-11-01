@@ -1,8 +1,8 @@
-import { AppViewClass, NewsResponse, SourcesResponse } from '../../types/index';
+import { IAppView, INewsResponse, ISourcesResponse } from '../../types/index';
 import News from './news/news';
 import Sources from './sources/sources';
 
-export class AppView implements AppViewClass {
+export class AppView implements IAppView {
     news: News;
     sources: Sources;
 
@@ -11,12 +11,12 @@ export class AppView implements AppViewClass {
         this.sources = new Sources();
     }
 
-    drawNews(data: NewsResponse): void {
+    drawNews(data: INewsResponse): void {
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
 
-    drawSources(data: SourcesResponse): void {
+    drawSources(data: ISourcesResponse): void {
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
