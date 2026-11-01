@@ -2,7 +2,7 @@ import { Source, ViewDrawData } from '../../../types/index';
 import './sources.css';
 
 class Sources implements ViewDrawData<Source[]> {
-    draw(data: Source[]) {
+    draw(data: Source[]): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp');
 

@@ -2,7 +2,7 @@ import { Article, ViewDrawData } from '../../../types/index';
 import './news.css';
 
 class News implements ViewDrawData<Article[]> {
-    draw(data: Article[]) {
+    draw(data: Article[]): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
