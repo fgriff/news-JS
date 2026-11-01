@@ -1,16 +1,21 @@
 .sources {
-    display: flex;
-    flex-wrap: nowrap;
     width: 100%;
-    height: 120px;
-    overflow: auto;
+    height: 280px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     font:
         300 1em 'Fira Sans',
         sans-serif;
+    box-shadow:
+        0 8px 8px -8px #30c5ff,
+        0 -8px 8px -8px #30c5ff;
+    overflow-y: scroll;
 }
 
 .source__item {
+    width: 250px;
     background: none;
     border: 2px solid #30c5ff;
     font: inherit;
@@ -20,6 +25,7 @@
     color: #70d6ff;
     transition: 0.25s;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .source__item:hover,
