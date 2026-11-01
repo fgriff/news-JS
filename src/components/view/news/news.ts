@@ -1,7 +1,7 @@
-import { Article, NewsClass } from '../../../types/index';
+import { Article, ViewDrawData } from '../../../types/index';
 import './news.css';
 
-class News implements NewsClass {
+class News implements ViewDrawData<Article[]> {
     draw(data: Article[]) {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 

@@ -1,9 +1,5 @@
-export interface NewsClass {
-    draw: (data: Article[]) => void;
-}
-
-export interface SourceClass {
-    draw: (data: Source[]) => void;
+export interface ViewDrawData<T> {
+    draw: (data: T) => void;
 }
 
 interface ArticleSource {

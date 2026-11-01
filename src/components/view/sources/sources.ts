@@ -1,7 +1,7 @@
-import { Source, SourceClass } from '../../../types/index';
+import { Source, ViewDrawData } from '../../../types/index';
 import './sources.css';
 
-class Sources implements SourceClass {
+class Sources implements ViewDrawData<Source[]> {
     draw(data: Source[]) {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp');
