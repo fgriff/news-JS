@@ -44,9 +44,12 @@ export interface INewsResponse {
     totalResults?: number;
 }
 
-export interface ISourcesResponse {
-    status: string;
+interface ISources {
     sources: ISource[];
+}
+
+export interface ISourcesResponse extends Partial<ISources> {
+    status: string;
 }
 
 export interface ILoader {
@@ -89,4 +92,8 @@ export interface IOptions {
 export interface IAppController {
     getSources: (callback: Callback) => void;
     getNews: (e: Event, callback: Callback) => void;
+}
+
+export interface IApp {
+    start: () => void;
 }
