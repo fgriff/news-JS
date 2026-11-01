@@ -75,7 +75,7 @@ export type RequestParams = {
 
 export interface IResponse {
     endpoint: Endpoints;
-    options: IOptions;
+    options?: IOptions;
 }
 
 export type Callback = (data: ISourcesResponse | INewsResponse) => void;
@@ -84,4 +84,9 @@ export type Endpoints = 'sources' | 'everything' | 'top-headlines' | 'top-headli
 
 export interface IOptions {
     sources?: string;
+}
+
+export interface IAppController {
+    getSources: (callback: Callback) => void;
+    getNews: (e: Event, callback: Callback) => void;
 }
