@@ -4,34 +4,34 @@ import './sources.css';
 class Sources implements IViewDrawData<ISource[]>, IRipple {
     public draw(data: ISource[]): void {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector('#sourceItemTemp');
+        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
 
         data.forEach((item) => {
             if (sourceItemTemp) {
-                const sourceClone = (sourceItemTemp as HTMLTemplateElement).content.cloneNode(true) as HTMLElement;
+                const sourceClone = <HTMLElement>sourceItemTemp.content.cloneNode(true);
 
-                const sourceCloneName = sourceClone.querySelector('.source__item-name');
+                const sourceCloneName = sourceClone.querySelector<HTMLElement>('.source__item-name');
 
                 if (sourceCloneName) {
-                    (sourceCloneName as HTMLElement).textContent = item.name;
+                    sourceCloneName.textContent = item.name;
                 }
 
-                const sourceCloneButton = sourceClone.querySelector('.source__item');
+                const sourceCloneButton = sourceClone.querySelector<HTMLElement>('.source__item');
 
                 if (sourceCloneButton) {
-                    (sourceCloneButton as HTMLElement).setAttribute('data-source-id', item.id);
+                    sourceCloneButton.setAttribute('data-source-id', item.id);
 
-                    this.applyRipple(sourceCloneButton as HTMLElement, 'source__item');
+                    this.applyRipple(sourceCloneButton, 'source__item');
                 }
 
                 fragment.append(sourceClone);
             }
         });
 
-        const sourcesContainer = document.querySelector('.sources');
+        const sourcesContainer = document.querySelector<HTMLElement>('.sources');
 
         if (sourcesContainer) {
-            (sourcesContainer as HTMLElement).append(fragment);
+            sourcesContainer.append(fragment);
         }
     }
 
@@ -39,13 +39,13 @@ class Sources implements IViewDrawData<ISource[]>, IRipple {
         let rippleElement: HTMLSpanElement;
 
         targetElement.addEventListener('click', (e: MouseEvent) => {
-            let target = e.target as HTMLElement;
+            let target = <HTMLElement>e.target;
 
             if (!target.classList.contains(targetClass)) {
-                const button = target.closest(`.${targetClass}`);
+                const button = target.closest<HTMLElement>(`.${targetClass}`);
 
                 if (button) {
-                    target = button as HTMLElement;
+                    target = button;
                 }
             }
 

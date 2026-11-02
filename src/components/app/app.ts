@@ -12,10 +12,10 @@ class App implements IApp {
     }
 
     public start(): void {
-        const sources = document.querySelector('.sources');
+        const sources = document.querySelector<HTMLElement>('.sources');
 
         if (sources) {
-            (sources as HTMLElement).addEventListener('click', (e) =>
+            sources.addEventListener('click', (e) =>
                 this.controller.getNews(e, (data: INewsResponse) => this.view.drawNews(data))
             );
             this.controller.getSources((data: ISourcesResponse) => this.view.drawSources(data));
