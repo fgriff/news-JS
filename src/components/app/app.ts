@@ -12,13 +12,28 @@ class App implements AppInterface {
     }
 
     public start(): void {
-        const sources = document.querySelector<HTMLElement>('.sources');
+        const sourceContainer = document.querySelector<HTMLElement>('.sources');
 
-        if (sources) {
-            sources.addEventListener('click', (e) =>
-                this.controller.getNews(e, (data: NewsArticlesResponse) => this.view.drawNews(data))
-            );
-            this.controller.getSources((data: NewsSourcesResponse) => this.view.drawSources(data));
+        if (sourceContainer) {
+            sourceContainer.addEventListener('click', (e: Event) => {
+                const sources = document.querySelectorAll<HTMLElement>('.source__item');
+
+                if (sources) {
+                    sources.forEach((source) => source.classList.remove('active'));
+                }
+
+                this.controller.getNews(e, (data: NewsArticlesResponse) => this.view.drawNews(data));
+            });
+
+            this.controller.getSources((data: NewsSourcesResponse) => {
+                this.view.drawSources(data);
+
+                const source = document.querySelector<HTMLElement>('.source__item');
+
+                if (source) {
+                    source.click();
+                }
+            });
         }
     }
 }

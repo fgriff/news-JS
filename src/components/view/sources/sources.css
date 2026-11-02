@@ -28,6 +28,10 @@
     overflow: hidden;
 }
 
+.source__item.active {
+    border-color: #3fcc59;
+    color: #3fcc59;
+}
 .source__item:hover,
 .source__item:focus {
     border-color: #3fcc59;

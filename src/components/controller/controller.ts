@@ -17,6 +17,8 @@ class AppController extends AppLoader implements AppControllerInterface {
 
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
+                target.classList.add('active');
+
                 const sourceId = target.getAttribute('data-source-id');
 
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
