@@ -1,7 +1,7 @@
-import { Callback, Endpoint, IAppController } from '../../types/index';
+import { AppControllerInterface, Callback, Endpoint } from '../../types/index';
 import AppLoader from './appLoader';
 
-class AppController extends AppLoader implements IAppController {
+class AppController extends AppLoader implements AppControllerInterface {
     public getSources(callback: Callback): void {
         super.getResp(
             {

@@ -1,8 +1,8 @@
-import { IApp, INewsResponse, ISourcesResponse } from '../../types/index';
+import { AppInterface, NewsArticlesResponse, NewsSourcesResponse } from '../../types/index';
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 
-class App implements IApp {
+class App implements AppInterface {
     private readonly controller: AppController;
     private readonly view: AppView;
 
@@ -16,9 +16,9 @@ class App implements IApp {
 
         if (sources) {
             sources.addEventListener('click', (e) =>
-                this.controller.getNews(e, (data: INewsResponse) => this.view.drawNews(data))
+                this.controller.getNews(e, (data: NewsArticlesResponse) => this.view.drawNews(data))
             );
-            this.controller.getSources((data: ISourcesResponse) => this.view.drawSources(data));
+            this.controller.getSources((data: NewsSourcesResponse) => this.view.drawSources(data));
         }
     }
 }

@@ -1,16 +1,16 @@
 import {
     Callback,
     Endpoint,
-    ILoader,
-    IOptions,
-    IResponse,
-    INewsResponse,
+    LoaderInterface,
+    NewsArticlesResponse,
+    NewsSourcesResponse,
     RequestParams,
-    ISourcesResponse,
+    RequestUrl,
     StatusCode,
+    UrlOptions,
 } from '../../types/index';
 
-class Loader implements ILoader {
+class Loader implements LoaderInterface {
     private readonly baseLink: string;
     private readonly options: RequestParams;
 
@@ -20,7 +20,7 @@ class Loader implements ILoader {
     }
 
     public getResp(
-        { endpoint, options = {} }: IResponse,
+        { endpoint, options = {} }: RequestUrl,
         callback: Callback = () => {
             console.error('No callback for GET response');
         }
@@ -38,7 +38,7 @@ class Loader implements ILoader {
         return res;
     }
 
-    private makeUrl(options: IOptions, endpoint: Endpoint): string {
+    private makeUrl(options: UrlOptions, endpoint: Endpoint): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -49,11 +49,11 @@ class Loader implements ILoader {
         return url.slice(0, -1);
     }
 
-    private load(method: string, endpoint: Endpoint, callback: Callback, options: IOptions = {}): void {
+    private load(method: string, endpoint: Endpoint, callback: Callback, options: UrlOptions = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
-            .then((data: ISourcesResponse | INewsResponse) => callback(data))
+            .then((data: NewsSourcesResponse | NewsArticlesResponse) => callback(data))
             .catch((err: Error) => console.error(err));
     }
 }

@@ -1,9 +1,9 @@
-import { IArticle, IViewDrawData } from '../../../types/index';
+import { NewsArticle, ViewDrawData } from '../../../types/index';
 import imagePlaceholder from '../../../assets/no-image-placeholder.jpg';
 import './news.css';
 
-class News implements IViewDrawData<IArticle[]> {
-    public draw(data: IArticle[]): void {
+class News implements ViewDrawData<NewsArticle[]> {
+    public draw(data: NewsArticle[]): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();

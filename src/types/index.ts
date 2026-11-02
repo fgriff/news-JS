@@ -1,30 +1,30 @@
-export interface IViewDrawData<T> {
+export interface ViewDrawData<T> {
     draw: (data: T) => void;
 }
 
-interface IArticleSource {
+interface NewsArticleSource {
     readonly id: string;
     readonly name: string;
 }
 
-export interface IArticle {
+export interface NewsArticle {
     readonly author: string;
     readonly content: string;
     readonly description: string;
     readonly publishedAt: string;
-    readonly source: IArticleSource;
+    readonly source: NewsArticleSource;
     readonly title: string;
     readonly url: string;
     readonly urlToImage: string;
 }
 
-export interface INewsResponse {
+export interface NewsArticlesResponse {
     status: 'ok' | 'error';
-    articles?: IArticle[];
+    articles?: NewsArticle[];
     totalResults?: number;
 }
 
-export interface ISource {
+export interface NewsSource {
     readonly category: string;
     readonly country: string;
     readonly description: string;
@@ -34,19 +34,19 @@ export interface ISource {
     readonly url: string;
 }
 
-interface ISources {
-    sources: ISource[];
+interface NewsSources {
+    sources: NewsSource[];
 }
 
-export interface ISourcesResponse extends Pick<INewsResponse, 'status'>, Partial<ISources> {}
+export interface NewsSourcesResponse extends Pick<NewsArticlesResponse, 'status'>, Partial<NewsSources> {}
 
-export interface IAppView {
-    drawNews: (data: INewsResponse) => void;
-    drawSources: (data: ISourcesResponse) => void;
+export interface AppViewInterface {
+    drawNews: (data: NewsArticlesResponse) => void;
+    drawSources: (data: NewsSourcesResponse) => void;
 }
 
-export interface ILoader {
-    getResp: ({ endpoint, options }: IResponse, callback?: Callback) => void;
+export interface LoaderInterface {
+    getResp: ({ endpoint, options }: RequestUrl, callback?: Callback) => void;
 }
 
 export type RequestParams = {
@@ -64,12 +64,12 @@ export type RequestParams = {
     page?: number;
 };
 
-export interface IResponse {
+export interface RequestUrl {
     endpoint: Endpoint;
-    options?: IOptions;
+    options?: UrlOptions;
 }
 
-export type Callback = (data: ISourcesResponse | INewsResponse) => void;
+export type Callback = (data: NewsSourcesResponse | NewsArticlesResponse) => void;
 
 export enum Endpoint {
     Sources = 'sources',
@@ -78,20 +78,20 @@ export enum Endpoint {
     TopHeadlinesSources = 'top-headlines/sources',
 }
 
-export interface IOptions {
+export interface UrlOptions {
     sources?: string;
 }
 
-export interface IAppController {
+export interface AppControllerInterface {
     getSources: (callback: Callback) => void;
     getNews: (e: Event, callback: Callback) => void;
 }
 
-export interface IApp {
+export interface AppInterface {
     start: () => void;
 }
 
-export interface IRipple {
+export interface RippleEffect {
     applyRipple: (targetElement: HTMLElement, targetClass: string) => void;
 }
 

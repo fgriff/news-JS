@@ -1,8 +1,8 @@
-import { IRipple, ISource, IViewDrawData } from '../../../types/index';
+import { NewsSource, RippleEffect, ViewDrawData } from '../../../types/index';
 import './sources.css';
 
-class Sources implements IViewDrawData<ISource[]>, IRipple {
-    public draw(data: ISource[]): void {
+class Sources implements ViewDrawData<NewsSource[]>, RippleEffect {
+    public draw(data: NewsSource[]): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
 
