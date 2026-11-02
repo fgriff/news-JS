@@ -1,4 +1,5 @@
 import { IArticle, IViewDrawData } from '../../../types/index';
+import imagePlaceholder from '../../../assets/no-image-placeholder.jpg';
 import './news.css';
 
 class News implements IViewDrawData<IArticle[]> {
@@ -23,7 +24,7 @@ class News implements IViewDrawData<IArticle[]> {
                 const newsClonePhoto = newsClone.querySelector<HTMLElement>('.news__meta-photo');
 
                 if (newsClonePhoto) {
-                    newsClonePhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+                    newsClonePhoto.style.backgroundImage = `url(${item.urlToImage || imagePlaceholder})`;
                 }
 
                 const newsCloneAuthor = newsClone.querySelector<HTMLElement>('.news__meta-author');
