@@ -2,7 +2,7 @@ import { IRipple, ISource, IViewDrawData } from '../../../types/index';
 import './sources.css';
 
 class Sources implements IViewDrawData<ISource[]>, IRipple {
-    draw(data: ISource[]): void {
+    public draw(data: ISource[]): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp');
 
@@ -35,7 +35,7 @@ class Sources implements IViewDrawData<ISource[]>, IRipple {
         }
     }
 
-    applyRipple(targetElement: HTMLElement, targetClass: string): void {
+    public applyRipple(targetElement: HTMLElement, targetClass: string): void {
         let rippleElement: HTMLSpanElement;
 
         targetElement.addEventListener('click', (e: MouseEvent) => {

@@ -1,6 +1,3 @@
-import type News from '../components/view/news/news';
-import type Sources from '../components/view/sources/sources';
-
 export interface IViewDrawData<T> {
     draw: (data: T) => void;
 }
@@ -44,19 +41,12 @@ interface ISources {
 export interface ISourcesResponse extends Pick<INewsResponse, 'status'>, Partial<ISources> {}
 
 export interface IAppView {
-    readonly news: News;
-    readonly sources: Sources;
     drawNews: (data: INewsResponse) => void;
     drawSources: (data: ISourcesResponse) => void;
 }
 
 export interface ILoader {
-    readonly baseLink: string;
-    readonly options: RequestParams;
     getResp: ({ endpoint, options }: IResponse, callback?: Callback) => void;
-    errorHandler: (res: Response) => Response | never;
-    makeUrl: (options: IOptions, endpoint: Endpoints) => string;
-    load: (method: string, endpoint: Endpoints, callback: Callback, options: IOptions) => void;
 }
 
 export type RequestParams = {

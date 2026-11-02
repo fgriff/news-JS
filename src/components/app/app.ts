@@ -3,15 +3,15 @@ import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 
 class App implements IApp {
-    private controller: AppController;
-    private view: AppView;
+    private readonly controller: AppController;
+    private readonly view: AppView;
 
     constructor() {
         this.controller = new AppController();
         this.view = new AppView();
     }
 
-    start(): void {
+    public start(): void {
         const sources = document.querySelector('.sources');
 
         if (sources) {
