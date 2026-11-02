@@ -21,6 +21,12 @@ export interface IArticle {
     readonly urlToImage: string;
 }
 
+export interface INewsResponse {
+    status: 'ok' | 'error';
+    articles?: IArticle[];
+    totalResults?: number;
+}
+
 export interface ISource {
     readonly category: string;
     readonly country: string;
@@ -31,25 +37,17 @@ export interface ISource {
     readonly url: string;
 }
 
+interface ISources {
+    sources: ISource[];
+}
+
+export interface ISourcesResponse extends Pick<INewsResponse, 'status'>, Partial<ISources> {}
+
 export interface IAppView {
     readonly news: News;
     readonly sources: Sources;
     drawNews: (data: INewsResponse) => void;
     drawSources: (data: ISourcesResponse) => void;
-}
-
-export interface INewsResponse {
-    status: string;
-    articles?: IArticle[];
-    totalResults?: number;
-}
-
-interface ISources {
-    sources: ISource[];
-}
-
-export interface ISourcesResponse extends Partial<ISources> {
-    status: string;
 }
 
 export interface ILoader {
