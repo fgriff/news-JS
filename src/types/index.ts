@@ -97,3 +97,7 @@ export interface IAppController {
 export interface IApp {
     start: () => void;
 }
+
+export interface IRipple {
+    applyRipple: (targetElement: HTMLElement, targetClass: string) => void;
+}

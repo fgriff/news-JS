@@ -1,7 +1,7 @@
-import { ISource, IViewDrawData } from '../../../types/index';
+import { IRipple, ISource, IViewDrawData } from '../../../types/index';
 import './sources.css';
 
-class Sources implements IViewDrawData<ISource[]> {
+class Sources implements IViewDrawData<ISource[]>, IRipple {
     draw(data: ISource[]): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp');
@@ -20,6 +20,8 @@ class Sources implements IViewDrawData<ISource[]> {
 
                 if (sourceCloneButton) {
                     (sourceCloneButton as HTMLElement).setAttribute('data-source-id', item.id);
+
+                    this.applyRipple(sourceCloneButton as HTMLElement, 'source__item');
                 }
 
                 fragment.append(sourceClone);
@@ -31,6 +33,32 @@ class Sources implements IViewDrawData<ISource[]> {
         if (sourcesContainer) {
             (sourcesContainer as HTMLElement).append(fragment);
         }
+    }
+
+    applyRipple(targetElement: HTMLElement, targetClass: string): void {
+        let rippleElement: HTMLSpanElement;
+
+        targetElement.addEventListener('click', (e: MouseEvent) => {
+            let target = e.target as HTMLElement;
+
+            if (!target.classList.contains(targetClass)) {
+                const button = target.closest(`.${targetClass}`);
+
+                if (button) {
+                    target = button as HTMLElement;
+                }
+            }
+
+            const left = e.clientX - target.getBoundingClientRect().left;
+            const top = e.clientY - target.getBoundingClientRect().top;
+
+            rippleElement = document.createElement('span');
+            rippleElement.classList.add('ripple');
+            rippleElement.style.left = `${left}px`;
+            rippleElement.style.top = `${top}px`;
+
+            targetElement.append(rippleElement);
+        });
     }
 }
 
