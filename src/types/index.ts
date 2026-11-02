@@ -65,13 +65,18 @@ export type RequestParams = {
 };
 
 export interface IResponse {
-    endpoint: Endpoints;
+    endpoint: Endpoint;
     options?: IOptions;
 }
 
 export type Callback = (data: ISourcesResponse | INewsResponse) => void;
 
-export type Endpoints = 'sources' | 'everything' | 'top-headlines' | 'top-headlines/sources';
+export enum Endpoint {
+    Sources = 'sources',
+    Everything = 'everything',
+    TopHeadlines = 'top-headlines',
+    TopHeadlinesSources = 'top-headlines/sources',
+}
 
 export interface IOptions {
     sources?: string;
