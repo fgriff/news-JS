@@ -101,3 +101,8 @@ export interface IApp {
 export interface IRipple {
     applyRipple: (targetElement: HTMLElement, targetClass: string) => void;
 }
+
+export enum StatusCode {
+    Unauthorized = 401,
+    NotFound = 404,
+}

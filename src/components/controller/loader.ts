@@ -7,6 +7,7 @@ import {
     INewsResponse,
     RequestParams,
     ISourcesResponse,
+    StatusCode,
 } from '../../types/index';
 
 class Loader implements ILoader {
@@ -29,7 +30,7 @@ class Loader implements ILoader {
 
     errorHandler(res: Response): Response | never {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === StatusCode.Unauthorized || res.status === StatusCode.NotFound)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
