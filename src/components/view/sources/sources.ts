@@ -36,8 +36,6 @@ class Sources implements ViewDrawData<NewsSource[]>, RippleEffect {
     }
 
     public applyRipple(targetElement: HTMLElement, targetClass: string): void {
-        let rippleElement: HTMLSpanElement;
-
         targetElement.addEventListener('click', (e: MouseEvent) => {
             let target = <HTMLElement>e.target;
 
@@ -49,15 +47,20 @@ class Sources implements ViewDrawData<NewsSource[]>, RippleEffect {
                 }
             }
 
-            const left = e.clientX - target.getBoundingClientRect().left;
-            const top = e.clientY - target.getBoundingClientRect().top;
+            const rect = target.getBoundingClientRect();
+            const left = e.clientX - rect.left;
+            const top = e.clientY - rect.top;
 
-            rippleElement = document.createElement('span');
+            const rippleElement = document.createElement('span');
             rippleElement.classList.add('ripple');
             rippleElement.style.left = `${left}px`;
             rippleElement.style.top = `${top}px`;
 
-            targetElement.append(rippleElement);
+            target.append(rippleElement);
+
+            rippleElement.addEventListener('animationend', () => {
+                rippleElement.remove();
+            });
         });
     }
 }
